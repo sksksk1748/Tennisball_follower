@@ -1,8 +1,10 @@
 # Tennisball_follower
 
-|Author|Chieh-Ting Chung|
-|---|---
-|E-mail|sksksk1748@gmail.com
+Author|Chieh-Ting Chung|Jhong-Ting Liang
+|---|---|---|
+|E-mail|sksksk1748@gmail.com|s3a517045@gmail.com|
+
+
 
 ## 目的
 經由實驗室申請經費，購買機器人做軟體上的二次開發。透過OpenCV影像辨識，並把圖像獲取、處理和分析，使撿網球機能夠辨識當前的物體是否具有網球的特徵，如球形及亮綠色，實現追蹤網球，並搭配超聲波感測器實現自主避障，以及搭配自製撿球裝置，可於網球場取代撿球工作。
