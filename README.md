@@ -30,7 +30,9 @@ source ~/catkin-ws/devel/setup.bash
 ## 開發專案參考出處
 Github : [sudrag/line_follower_turtlebot](https://github.com/sudrag/line_follower_turtlebot)
 
+![image](https://github.com/sksksk1748/Tennisball_follower/blob/master/ball-tracking-animated-02.gif)
+
 ## 購買機器人出處
 [王道機器人](http://www.kinglyrobotics.com/about.html)
 
-![image](https://github.com/sksksk1748/Tennisball_follower/blob/master/ball-tracking-animated-02.gif)
+
