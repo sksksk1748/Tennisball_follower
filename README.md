@@ -1,6 +1,6 @@
 # Tennisball_follower
 
-[![C++](https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg?style=plastic)](https://en.wikipedia.org/wiki/C%2B%2B) 
+[![C++](https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg?style=plastic)](https://zh.wikipedia.org/wiki/C%2B%2B) 
 
 Author|Chieh-Ting Chung|Jhong-Ting Liang|Zhi-Jia Wen|
 |---|---|---|---|
