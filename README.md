@@ -28,7 +28,8 @@ source ~/catkin-ws/devel/setup.bash
 ```
 
 ## 開發專案參考出處
-Github : [sudrag/line_follower_turtlebot](https://github.com/sudrag/line_follower_turtlebot)
+* Github : [sudrag/line_follower_turtlebot](https://github.com/sudrag/line_follower_turtlebot)
+* [Ball Tracking with OpenCV](https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/)
 
 ![image](https://github.com/sksksk1748/Tennisball_follower/blob/master/ball-tracking-animated-02.gif)
 
