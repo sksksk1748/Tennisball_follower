@@ -235,13 +235,13 @@ int LineDetect::colorthresh(cv::Mat input) {
     // Go straight if centroid is near image center
 
     if(first<=30 || second<=30 || three<=10){
-	    if(first < second && first<three){
-	        LineDetect::dir = 4;
-	    }else if(first > second && second<=three){
-	        LineDetect::dir = 5;
-	    }else if(three < 10){
-	        LineDetect::dir = 1;
-	    }
+	      if(first < second && first<three){
+	          LineDetect::dir = 4;
+	      }else if(first > second && second<=three){
+	          LineDetect::dir = 5;
+	      }else if(three < 10){
+	          LineDetect::dir = 1;
+	      }
     }else{
 	      // 如果球的質心出現在畫面的左側，則車子輪子轉向左
   	    if(c_x < w/2-tol){
