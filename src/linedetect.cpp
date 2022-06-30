@@ -52,16 +52,16 @@ void LineDetect::imageCallback(const sensor_msgs::ImageConstPtr& msg) {
 
 cv::Mat LineDetect::Gauss(cv::Mat input) {
   cv::Mat output;
-// Applying Gaussian Filter
+  // Applying Gaussian Filter
   cv::GaussianBlur(input, output, cv::Size(11, 11), 0, 0); 
   /*OpenCV高斯平滑
-void GaussianBlur(const Mat &src, Mat &dst, Size ksize, double sigmaX, double sigmaY)
+  void GaussianBlur(const Mat &src, Mat &dst, Size ksize, double sigmaX, double sigmaY)
 
-src：輸入可以為多通道圖，會單獨處理各通道，但是通常使用單通道灰階圖，例如CV_8U或CV_16U。
-dst：輸出圖會和輸入圖尺寸、型態相同。
-ksize：模板大小，長寬可以不同，但是都必須為正的奇數。
-sigmaX：x方向的標準差。
-sigmaY：y方向的標準差。*/
+  src：輸入可以為多通道圖，會單獨處理各通道，但是通常使用單通道灰階圖，例如CV_8U或CV_16U。
+  dst：輸出圖會和輸入圖尺寸、型態相同。
+  ksize：模板大小，長寬可以不同，但是都必須為正的奇數。
+  sigmaX：x方向的標準差。
+  sigmaY：y方向的標準差。*/
   return output;
 }
 
@@ -100,7 +100,7 @@ int LineDetect::colorthresh(cv::Mat input) {
             iss >> first;
             break;
         }
-		else if(c == ' ')
+	else if(c == ' ')
         {
             //get the the last line when finding its corresponding beginning
             std::getline(ifs, line);
@@ -109,7 +109,7 @@ int LineDetect::colorthresh(cv::Mat input) {
             iss >> second;
             //break;
         }
-		else if(c == '!')
+	else if(c == '!')
         {
             //get the the last line when finding its corresponding beginning
             std::getline(ifs, line);
@@ -122,53 +122,53 @@ int LineDetect::colorthresh(cv::Mat input) {
         index--;
     }
     //std::cout << "line num: " << linenum << std::endl;
-	char str[10];
- 	sprintf(str, "%d %d %d", first,second, three);
+    char str[10];
+    sprintf(str, "%d %d %d", first,second, three);
 
 
-  // Initializaing variables
-  cv::Size s = input.size();
-  std::vector<std::vector<cv::Point> > v;
-  auto w = s.width;
-  auto h = s.height;
-  auto c_x = 0.0;
+    // Initializaing variables
+    cv::Size s = input.size();
+    std::vector<std::vector<cv::Point> > v;
+    auto w = s.width;
+    auto h = s.height;
+    auto c_x = 0.0;
   
-  // Detect all objects within the HSV range
-  cv::cvtColor(input, LineDetect::img_hsv, CV_BGR2HSV);
-  LineDetect::LowerYellow = {30, 65, 98};
-  LineDetect::UpperYellow = {51, 220, 255};
+    // Detect all objects within the HSV range
+    cv::cvtColor(input, LineDetect::img_hsv, CV_BGR2HSV);
+    LineDetect::LowerYellow = {30, 65, 98};
+    LineDetect::UpperYellow = {51, 220, 255};
   
-  cv::inRange(LineDetect::img_hsv, LowerYellow,UpperYellow, LineDetect::img_mask);//可以更準確的知道綠球位置
+    cv::inRange(LineDetect::img_hsv, LowerYellow,UpperYellow, LineDetect::img_mask);//可以更準確的知道綠球位置
   
-  cv::erode(LineDetect::img_mask, LineDetect::img_mask, cv::Mat(),cv::Point(-1,-1),2);
+    cv::erode(LineDetect::img_mask, LineDetect::img_mask, cv::Mat(),cv::Point(-1,-1),2);
   
   
-  /*OpenCV侵蝕
-erode(const Mat &src, Mat &dst, Mat kernel, Point anchor=Point(-1,-1), int iterations=1)
+    /*OpenCV侵蝕
+    erode(const Mat &src, Mat &dst, Mat kernel, Point anchor=Point(-1,-1), int iterations=1)
 
-src：輸入圖，可以多通道，深度可為CV_8U、CV_16U、CV_16S、CV_32F或CV_64F。
-dst：輸出圖，和輸入圖尺寸、型態相同。
-kernel：結構元素，如果kernel=Mat()則為預設的3×3矩形，越大侵蝕效果越明顯。
-anchor：原點位置，預設為結構元素的中央。
-iterations：執行次數，預設為1次，執行越多次侵蝕效果越明顯。*/
+    src：輸入圖，可以多通道，深度可為CV_8U、CV_16U、CV_16S、CV_32F或CV_64F。
+    dst：輸出圖，和輸入圖尺寸、型態相同。
+    kernel：結構元素，如果kernel=Mat()則為預設的3×3矩形，越大侵蝕效果越明顯。
+    anchor：原點位置，預設為結構元素的中央。
+    iterations：執行次數，預設為1次，執行越多次侵蝕效果越明顯。*/
 
-  cv::dilate(LineDetect::img_mask, LineDetect::img_mask, cv::Mat(),cv::Point(-1,-1),2);
+    cv::dilate(LineDetect::img_mask, LineDetect::img_mask, cv::Mat(),cv::Point(-1,-1),2);
   
-  /*
-  OpenCV膨脹
-dilate(const Mat &src, Mat &dst, Mat kernel, Point anchor=Point(-1,-1), int iterations=1)
+    /*
+    OpenCV膨脹
+    dilate(const Mat &src, Mat &dst, Mat kernel, Point anchor=Point(-1,-1), int iterations=1)
 
-src：輸入圖，可以多通道，深度可為CV_8U、CV_16U、CV_16S、CV_32F或CV_64F。
-dst：輸出圖，和輸入圖尺寸、型態相同。
-kernel：結構元素，如果kernel=Mat()則為預設的3×3矩形，越大膨脹效果越明顯。
-anchor：原點位置，預設為結構元素的中央。
-iterations：執行次數，預設為1次，執行越多次膨脹效果越明顯。*/
+    src：輸入圖，可以多通道，深度可為CV_8U、CV_16U、CV_16S、CV_32F或CV_64F。
+    dst：輸出圖，和輸入圖尺寸、型態相同。
+    kernel：結構元素，如果kernel=Mat()則為預設的3×3矩形，越大膨脹效果越明顯。
+    anchor：原點位置，預設為結構元素的中央。
+    iterations：執行次數，預設為1次，執行越多次膨脹效果越明顯。*/
 
-  cv::findContours(LineDetect::img_mask, v, CV_RETR_LIST, CV_CHAIN_APPROX_NONE); //計算球的輪廓
-  // Choosing contours with maximum area
+    cv::findContours(LineDetect::img_mask, v, CV_RETR_LIST, CV_CHAIN_APPROX_NONE); //計算球的輪廓
+    // Choosing contours with maximum area
   
-  cv::Point2f center;
-  float radius;
+    cv::Point2f center;
+    float radius;
   
   if (v.size() != 0) {
   auto area = 0;
