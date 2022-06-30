@@ -67,7 +67,7 @@ sigmaY：y方向的標準差。*/
 
 int LineDetect::colorthresh(cv::Mat input) {
 
-
+    // 讀取 arduino 三個超聲波感測器的數值
     std::string file = "/home/rikirobot/putty.log"; 
     std::ifstream ifs(file.c_str(), std::fstream::in);
 
@@ -78,12 +78,13 @@ int LineDetect::colorthresh(cv::Mat input) {
     int length = ifs.tellg();
     //std::cout << "length: " << length << std::endl; 
 
+    // 將 putty.log 的字串做正規化處理，分別讀出三個超聲波感測器的數值
     std::string line;
     //check '\n' from second character because the last character is '\n'
     int index = -3; 
-	int three =  0;
+    int three =  0;
     int second = 0;
-    int first=0;
+    int first = 0;
     while(length)
     {   
         char c;
@@ -188,6 +189,7 @@ Point2f& center：表示输出的圆形的中心坐标，是float型
 float& radius：输出的最小圆的半径，是float型*/
 
   // Perform centroid detection of line
+  // 利用 moments() 找出 img_mask 網球的質心(centroid)
   cv::Moments M = cv::moments(LineDetect::img_mask);
   
   if (radius > 10) {
@@ -206,6 +208,18 @@ lineType：通道型態，可輸入8、4、CV_AA： 8->8通道連結。 4->4通�
     cv::Point p1(M.m10/M.m00, M.m01/M.m00);
     //cv::circle(LineDetect::img_mask, p1, 5, cv::Scalar(0, 0, 255), -1); 
   }
+  // 找出質心 X 軸在input image 中的位置
+  /*
+  Centroid X軸與Y軸的計算公式
+  c_x = M.m10/M.m00
+  c_y = M.m01/M.m00
+  
+           c_x
+        _________
+       |         |
+  c_y  |         |
+       |_________|
+  */
   c_x = M.m10/M.m00;
   
   cv::putText(input, str, cv::Point(M.m10/M.m00, M.m01/M.m00),
@@ -239,8 +253,10 @@ lineType：通道型態，有以下三種可選： 8：8通道連結。 4：4通
 	  LineDetect::dir = 1;
 	}
   }else{
+	// 如果球的質心出現在畫面的左側，則車子輪子轉向左
   	if (c_x < w/2-tol) {
     	LineDetect::dir = 0; // left
+	// 如果球的質心出現在畫面的右側，則車子輪子轉向右
   	} else if (c_x > w/2+tol) {
     	LineDetect::dir = 2; // right
   	} else {
