@@ -235,27 +235,27 @@ int LineDetect::colorthresh(cv::Mat input) {
     // Go straight if centroid is near image center
 
     if(first<=30 || second<=30 || three<=10){
-	      if(first < second && first<three){
-	          LineDetect::dir = 4;
-	      }else if(first > second && second<=three){
-	          LineDetect::dir = 5;
-	      }else if(three < 10){
-	          LineDetect::dir = 1;
-	      }
+        if(first < second && first<three){
+            LineDetect::dir = 4;
+        }else if(first > second && second<=three){
+            LineDetect::dir = 5;
+        }else if(three < 10){
+            LineDetect::dir = 1;
+        }
     }else{
-	      // 如果球的質心出現在畫面的左側，則車子輪子轉向左
-  	    if(c_x < w/2-tol){
+        // 如果球的質心出現在畫面的左側，則車子輪子轉向左
+        if(c_x < w/2-tol){
             LineDetect::dir = 0; // left
-	      // 如果球的質心出現在畫面的右側，則車子輪子轉向右
-  	    }else if(c_x > w/2+tol){
+        // 如果球的質心出現在畫面的右側，則車子輪子轉向右
+        }else if(c_x > w/2+tol){
             LineDetect::dir = 2; // right
-  	    }else{
+        }else{
             LineDetect::dir = 1; // Straight
-  	    }
+        }
         // Search if no ball detected
-  	    if(count == 0){
-	          LineDetect::dir = 3;
-  	    }
+        if(count == 0){
+            LineDetect::dir = 3;
+        }
     }
     // Output images viewed by the turtlebot
     cv::namedWindow("Rikirobot View");
