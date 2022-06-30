@@ -88,26 +88,21 @@ int LineDetect::colorthresh(cv::Mat input) {
         ifs.seekg (index, ifs.end);
         ifs.get(c);
         //check '\n' from end to begin
-        if(c == '\n')
-        {
+        if(c == '\n'){
             //get the the last line when finding its corresponding beginning
             std::getline(ifs, line);
             //convet characters to int through istringstream class provided in c++
             std::istringstream iss(line);
             iss >> first;
             break;
-        }
-	      else if(c == ' ')
-        {
+        }else if(c == ' '){
             //get the the last line when finding its corresponding beginning
             std::getline(ifs, line);
             //convet characters to int through istringstream class provided in c++
             std::istringstream iss(line);
             iss >> second;
             //break;
-        }
-	      else if(c == '!')
-        {
+        }else if(c == '!'){
             //get the the last line when finding its corresponding beginning
             std::getline(ifs, line);
             //convet characters to int through istringstream class provided in c++
